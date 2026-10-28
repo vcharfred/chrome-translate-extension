@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI 网页翻译</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 340px;
+      font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      color: #1f2430;
+      background: #f5f7fb;
+    }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #4f6ef7, #7b5cf0);
+      color: #fff;
+    }
+    header h1 { font-size: 15px; }
+    header a { color: #fff; font-size: 12px; text-decoration: none; opacity: .9; }
+    header a:hover { opacity: 1; text-decoration: underline; }
+
+    .status {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; font-size: 13px; background: #fff;
+      border-bottom: 1px solid #e5e8f0;
+    }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+    .dot.ok { background: #16a34a; }
+    .dot.bad { background: #dc2626; }
+
+    .main { padding: 14px; }
+    textarea {
+      width: 100%; height: 84px; resize: vertical;
+      border: 1px solid #e5e8f0; border-radius: 8px;
+      padding: 9px 11px; font-size: 13px; outline: none;
+      font-family: inherit;
+    }
+    textarea:focus { border-color: #4f6ef7; }
+    .btn {
+      width: 100%; margin-top: 10px; padding: 9px 0;
+      border: none; border-radius: 8px;
+      background: #4f6ef7; color: #fff; font-size: 14px;
+      cursor: pointer;
+    }
+    .btn:hover { background: #3b56d9; }
+    .btn:disabled { opacity: .6; cursor: wait; }
+    .result {
+      margin-top: 12px; padding: 10px 12px;
+      background: #fff; border: 1px solid #e5e8f0; border-radius: 8px;
+      font-size: 13px; line-height: 1.8; white-space: pre-wrap;
+      word-break: break-word; min-height: 40px; max-height: 180px; overflow-y: auto;
+    }
+    .result.empty { color: #9aa0ae; }
+    .result.error { color: #dc2626; }
+    .settings-link {
+      display: block; text-align: center; padding: 10px 0 14px;
+      font-size: 12px; color: #4f6ef7; text-decoration: none;
+    }
+    .settings-link:hover { text-decoration: underline; }
+
+    .page-row { display: flex; gap: 8px; padding: 0 14px 12px; }
+    .page-btn {
+      flex: 1; padding: 8px 0; border-radius: 8px; border: none;
+      font-size: 13px; cursor: pointer; background: #eef1fb; color: #3b56d9;
+    }
+    .page-btn:hover { background: #e2e8fc; }
+    .page-btn:disabled { opacity: .55; cursor: default; }
+    .tip { font-size: 12px; color: #6b7280; padding: 0 14px 12px; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌐 AI 网页翻译</h1>
+    <a href="#" id="openOptions">⚙️ 设置</a>
+  </header>
+  <div class="status">
+    <span id="statusText"><span class="dot ok"></span>检测中…</span>
+    <label style="cursor:pointer">
+      <input type="checkbox" id="enabledToggle" style="accent-color:#4f6ef7" />
+      划词翻译
+    </label>
+  </div>
+  <div class="page-row">
+    <button class="page-btn" id="pageTranslate">🌐 翻译整个网页</button>
+    <button class="page-btn" id="pageRestore">↩ 恢复原文</button>
+  </div>
+  <div class="tip" id="pageTip">整页翻译会在右下角显示进度条，可随时切换/恢复原文。</div>
+  <div class="main">
+    <textarea id="input" placeholder="在此粘贴或输入要翻译的文本…"></textarea>
+    <button class="btn" id="go">翻 译</button>
+    <div class="result empty" id="result">译文将显示在这里</div>
+  </div>
+  <a class="settings-link" href="#" id="openOptions2">配置服务商 / API Key / 目标语言 →</a>
+  <script src="popup.js"></script>
+</body>
+</html>

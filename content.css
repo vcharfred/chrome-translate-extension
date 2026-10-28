@@ -1,0 +1,157 @@
+/* AI 网页翻译 - 内容脚本注入样式（前缀 aitx- 避免与页面冲突） */
+
+.aitx-fab {
+  position: absolute;
+  z-index: 2147483646;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #4f6ef7, #7b5cf0);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 3px 10px rgba(79, 110, 247, 0.45);
+  transition: transform 0.12s ease;
+}
+.aitx-fab:hover { transform: scale(1.1); }
+
+.aitx-panel {
+  position: absolute;
+  z-index: 2147483647;
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e2e6f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(20, 30, 70, 0.18);
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  color: #1f2430;
+  overflow: hidden;
+}
+
+.aitx-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #4f6ef7, #7b5cf0);
+  flex-shrink: 0;
+}
+.aitx-title { color: #fff; font-size: 13px; font-weight: 600; }
+.aitx-head-btns { display: flex; gap: 6px; }
+.aitx-btn {
+  border: none;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  line-height: 1.5;
+}
+.aitx-btn:hover { background: rgba(255, 255, 255, 0.32); }
+
+.aitx-src {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #8a90a0;
+  border-bottom: 1px solid #eef0f6;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.aitx-body {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.aitx-err {
+  padding: 12px;
+  font-size: 13px;
+  color: #dc2626;
+  line-height: 1.7;
+  overflow-y: auto;
+}
+
+.aitx-loading {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #8a90a0;
+  font-size: 13px;
+}
+.aitx-loading span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4f6ef7;
+  animation: aitx-bounce 1.2s infinite ease-in-out;
+}
+.aitx-loading span:nth-child(2) { animation-delay: 0.15s; }
+.aitx-loading span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes aitx-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-5px); opacity: 1; }
+}
+
+/* 整页翻译控制条 */
+.aitx-bar {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483645;
+  width: 260px;
+  background: #ffffff;
+  border: 1px solid #e2e6f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(20, 30, 70, 0.18);
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  color: #1f2430;
+  padding: 12px 14px;
+  user-select: none;
+}
+.aitx-bar-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.aitx-bar-title { font-size: 13px; font-weight: 600; }
+.aitx-x {
+  border: none; background: transparent; cursor: pointer;
+  font-size: 13px; color: #8a90a0; padding: 0 2px; line-height: 1;
+}
+.aitx-x:hover { color: #dc2626; }
+
+.aitx-progress {
+  height: 5px; background: #eef0f6; border-radius: 3px; overflow: hidden;
+}
+.aitx-progress i {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, #4f6ef7, #7b5cf0);
+  transition: width .25s ease;
+}
+.aitx-bar.done .aitx-progress i { background: #16a34a; }
+
+.aitx-bar-status {
+  font-size: 12px; color: #6b7280; margin: 8px 0 10px; line-height: 1.6;
+}
+.aitx-bar-status.err { color: #dc2626; }
+
+.aitx-bar-btns { display: flex; gap: 6px; }
+.aitx-b {
+  flex: 1;
+  border: none; background: #eef1fb; color: #3b56d9;
+  font-size: 12px; padding: 5px 0; border-radius: 6px; cursor: pointer;
+  font-family: inherit;
+}
+.aitx-b:hover { background: #e2e8fc; }
